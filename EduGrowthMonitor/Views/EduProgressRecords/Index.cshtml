@@ -1,0 +1,117 @@
+﻿@*@model IEnumerable<EduGrowthMonitor.Models.EduProgressRecord>
+*@
+@model EduGrowthMonitor.Models.GetEmployeeByDomain
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Record</h2>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+@*<form asp-controller="EduProgressRecords" asp-action="Index" method="get">
+    <p>
+        <style>
+            input[type="number"] {
+                width: 70px;
+            }
+        </style>
+        <select asp-for="EmpDomain" asp-items="Model.EmployeeByDomain">
+            <option value="">Search by Domain</option>
+        </select>
+        Employee_ID: <input type="number" name="SearchId" />
+        Enter Date1: <input type="date" asp-for="SerchByDate">
+        Enter Date2: <input type="date" asp-for="SerchByDate2">
+        <input type="submit" value="Filter" />
+    </p>
+</form>*@
+<form>
+    <p>
+        <style>
+            input[type="number"] {
+                width: 70px;
+            }
+        </style>
+        <select asp-for="EmpDomain" asp-items="Model.EmployeeByDomain">
+            <option value="">Search by Domain</option>
+        </select>
+        Employee_ID: <input type="number" asp-for="SearchId" />
+        Enter Date1: <input type="date" asp-for="SerchByDate">
+        Enter Date2: <input type="date" asp-for="SerchByDate2">
+
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EduProgressRecords![0].Emp_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EduProgressRecords![0].Domain)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EduProgressRecords![0].Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EduProgressRecords![0].Task)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EduProgressRecords![0].Deatils)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EduProgressRecords![0].Hours)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EduProgressRecords![0].Comments)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.EduProgressRecords!) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Emp_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Domain)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Task)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Deatils)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hours)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comments)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<form align="right">
+    <style>
+        .form-inline .control-label,
+        .form-inline .form-control {
+            display: inline-block;
+        }
+    </style>
+    <div class="form-inline">
+        <label asp-for="WeekelyHours" class="control-label"></label>
+        <input asp-for="WeekelyHours" class="form-control" readonly />
+    </div>
+</form>
